@@ -105,7 +105,21 @@ Locate `App.framework` and `Flutter.framework`.
 
 ---
 
-## 4. Build Cocos2d-x Game for iOS
+## 4. Add 2.1.3 SDK files
+
+This steps are Similar to pure cocos SDK integration. Files have to copy from 'BootFlutter213'.
+
+1. First run '3-prepareUpStore' tool before copying the files
+2. Copy 'LoadScene' and 'Ext' folders from assets folder, to your cocos project assets folder
+3. Copy 'node_modules' to your cocos root folder -- if 'node_modules' not found then you have to run `npm install` at 'BootFlutter213' folder
+4. Copy build-templates folder from UPStoreTools/BootFlutter213/ and paste to you Cocos root folder
+From
+![Alt text](Screenshots/bootflutter213bt.png)
+To
+![Alt text](Screenshots/cocosRoot213.png)
+
+---
+## 5. Build Cocos2d-x Game for iOS
 
 Navigate to your project and locate `cc_proj_for_flutter.xcodeproj` file
 ```bash
@@ -115,7 +129,7 @@ Open `cc_proj_for_flutter.xcodeproj` and ensure it builds successfully for a sim
 
 ---
 
-## 5. Create Workspace and Add Both Projects
+## 6. Create Workspace and Add Both Projects
 
 1. Open Xcode
 2. Create new workspace 
@@ -127,7 +141,7 @@ Goto File->New->Workspace, give a name for the file eg: `FlutterCocosLauncher.xc
 
 ---
 
-## 6. Add Frameworks to Cocos Project
+## 7. Add Frameworks to Cocos Project
 
 1. Select `cc_proj_for_flutter` in xcode,make sure TARGETS selected as `cc_proj_for_flutter-mobile` 
 2. Select `General` tab, Expand `Frameworks, Libraries, and Embedded Contents` 
@@ -148,7 +162,7 @@ Goto File->New->Workspace, give a name for the file eg: `FlutterCocosLauncher.xc
 ![Alt text](Screenshots/EmbedSign.png)
 ---
 
-## 7. Set Framework Search Path
+## 8. Set Framework Search Path
 
 1. Select `cc_proj_for_flutter` in xcode,make sure TARGETS selected as `cc_proj_for_flutter-mobile`
 
@@ -168,7 +182,7 @@ Goto File->New->Workspace, give a name for the file eg: `FlutterCocosLauncher.xc
 
 ---
 
-## 8. Update Runpath Search Paths
+## 9. Update Runpath Search Paths
 
 1. Select `cc_proj_for_flutter` in xcode,make sure TARGETS selected as `cc_proj_for_flutter-mobile`
 
@@ -188,7 +202,7 @@ Goto File->New->Workspace, give a name for the file eg: `FlutterCocosLauncher.xc
 
 ---
 
-## 9. Set `-fobjc-arc` for `AppController.mm`
+## 10. Set `-fobjc-arc` for `AppController.mm`
 
 1. Select `cc_proj_for_flutter` in xcode,make sure TARGETS selected as `cc_proj_for_flutter-mobile`
 
@@ -206,22 +220,7 @@ Goto File->New->Workspace, give a name for the file eg: `FlutterCocosLauncher.xc
 
 ---
 
-## 10. Add 2.1.3 SDK files
-
-This steps are Similar to pure cocos SDK integration. Files have to copy from 'BootFlutter213'.
-
-1. First run '3-prepareUpStore' tool before copying the files
-2. Copy 'LoadScene' and 'Ext' folders from assets folder, to your cocos project assets folder
-3. Copy 'node_modules' to your cocos root folder -- if 'node_modules' not found then you have to run `npm install` at 'BootFlutter213' folder
-4. Copy build-templates folder from UPStoreTools/BootFlutter213/ and paste to you Cocos root folder
-From
-![Alt text](Screenshots/bootflutter213bt.png)
-To
-![Alt text](Screenshots/cocosRoot213.png)
-
----
-
-## 10. Final Step is to run `cc_proj_for_flutter` to your Device
+## 11. Final Step is to run `cc_proj_for_flutter` to your Device
 
 1. Select `cc_proj_for_flutter` in xcode,make sure TARGETS selected as `cc_proj_for_flutter-mobile`
 
