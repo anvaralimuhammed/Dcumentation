@@ -101,7 +101,7 @@ Navigate to:
 ```
 flutter_app/build/ios/Release-iphoneos/
 ```
-Locate `App.framework` and `Flutter.framework`.
+Locate `App.framework` and `Flutter.framework`. and also look for any other plugins framework files, and add them as well
 
 ---
 
