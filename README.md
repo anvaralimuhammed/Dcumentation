@@ -206,89 +206,15 @@ Goto File->New->Workspace, give a name for the file eg: `FlutterCocosLauncher.xc
 
 ---
 
-## 10. Update `AppController.mm` to Launch Flutter and Switch to Cocos
+## 10. Copy build-templates folder from UPStoreTools/BootFlutter213/ and paste to you Cocos root folder
 
-1. Expand `cc_proj_for_flutter` on the left Nav bar, and goto `ios` folder
+From
 
-2. Open `AppController.mm` file, and Add below Lines to this file
+![Alt text](Screenshots/bootflutter213bt.png)
 
-```objc
-#import <Flutter/Flutter.h>
-```
+To
 
-```objc
-FlutterEngine* flutterEngine = nil;
-```
-
-Then Replace `didFinishLaunchingWithOptions` function with below code
-
-```objc
-- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    [[SDKWrapper getInstance] application:application didFinishLaunchingWithOptions:launchOptions];
-    
-    CGRect bounds = [[UIScreen mainScreen] bounds];
-    window = [[UIWindow alloc] initWithFrame:bounds];
-    
-    // 🔥 Initialize Flutter engine
-    flutterEngine = [[FlutterEngine alloc] initWithName:@"my_flutter_engine"];
-    [flutterEngine runWithEntrypoint:nil];
-    // [GeneratedPluginRegistrant registerWithRegistry:flutterEngine]; // Only needed if using plugins
-    
-    // 🔥 Show Flutter view controller first
-    FlutterViewController* flutterVC = [[FlutterViewController alloc] initWithEngine:flutterEngine nibName:nil bundle:nil];
-    window.rootViewController = flutterVC;
-    [window makeKeyAndVisible];
-
-    // ✅ Declare weakSelf INSIDE the method, but OUTSIDE the block
-    __weak __typeof(self) weakSelf = self;
-
-    
-    // 🔁 Add MethodChannel to receive 'launchCocos' from Dart
-    FlutterMethodChannel* channel = [FlutterMethodChannel methodChannelWithName:@"cocos_bridge" binaryMessenger:flutterVC.binaryMessenger];
-
-    [channel setMethodCallHandler:^(FlutterMethodCall* call, FlutterResult result) {
-        if ([call.method isEqualToString:@"launchCocos"]) {
-            NSLog(@"🎮 Received 'launchCocos' from Flutter. Launching Cocos game...");
-            [weakSelf showCocosGame];
-            result(@"Cocos started");
-        } else {
-            result(FlutterMethodNotImplemented);
-        }
-    }];
-    
-    return YES;
-}
-```
-
-Add the `showCocosGame` method at the bottom, just before `@end`
-
-```objc
-- (void)showCocosGame {
-    float scale = [[UIScreen mainScreen] scale];
-    CGRect bounds = [[UIScreen mainScreen] bounds];
-
-    // Initialize Cocos2d-x game
-    app = new AppDelegate(bounds.size.width * scale, bounds.size.height * scale);
-    app->setMultitouch(true);
-
-    _viewController = [[RootViewController alloc]init];
-
-#ifdef NSFoundationVersionNumber_iOS_7_0
-    _viewController.automaticallyAdjustsScrollViewInsets = NO;
-    _viewController.extendedLayoutIncludesOpaqueBars = NO;
-    _viewController.edgesForExtendedLayout = UIRectEdgeAll;
-#else
-    _viewController.wantsFullScreenLayout = YES;
-#endif
-
-    // Set Cocos view controller as root
-    window.rootViewController = _viewController;
-    [window makeKeyAndVisible];
-    [[UIApplication sharedApplication] setStatusBarHidden:YES];
-
-    app->start();
-}
-```
+![Alt text](Screenshots/cocosRoot213.png)
 
 ---
 
