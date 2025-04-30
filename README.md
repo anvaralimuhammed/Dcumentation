@@ -219,8 +219,33 @@ Goto File->New->Workspace, give a name for the file eg: `FlutterCocosLauncher.xc
 ✅ This ensures ARC is enabled for that file.
 
 ---
+## 11. Enable C Modules
 
-## 11. Final Step is to run `cc_proj_for_flutter` to your Device
+1. Select `cc_proj_for_flutter` in xcode,make sure TARGETS selected as `cc_proj_for_flutter-mobile`
+
+2. Select `Build Settings` tab, And Search for `Enable Modules (C and Objective-C)`
+
+3. Change value to `YES`
+
+![Alt text](Screenshots/EnableCmod.png)
+
+## 12. Add GeneratedPluginRegistrant.h and .m files to Compile Sources
+
+1. Select `cc_proj_for_flutter` in xcode,make sure TARGETS selected as `cc_proj_for_flutter-mobile`
+
+2. Select `Build Phases` tab, And Expand `Compile Sources`
+
+3. Press `+` button, and click on `Add Other..`
+   
+4. Select files with name `GeneratedPluginRegistrant.h` and `GeneratedPluginRegistrant.m` from the path `<from root folder>/flutter_app/ios/Runner/` and click `Open`
+
+![Alt text](Screenshots/compilesources.png)
+
+![Alt text](Screenshots/csPopup.png)
+
+![Alt text](Screenshots/AddCsFiles.png)
+
+## 13. Final Step is to run `cc_proj_for_flutter` to your Device
 
 1. Select `cc_proj_for_flutter` in xcode,make sure TARGETS selected as `cc_proj_for_flutter-mobile`
 
